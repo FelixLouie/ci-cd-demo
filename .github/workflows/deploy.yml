@@ -3,15 +3,20 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # This workflow runs when code is pushed to the main branch
+      - main  # Runs when code is pushed to the main branch
+
+permissions:
+  contents: write  # Grants write access to the repository
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest  # Runs on a Linux environment
+    runs-on: ubuntu-latest  # Runs on GitHub's Linux environment
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3  # Pulls the latest code
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false  # Disables default token
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
