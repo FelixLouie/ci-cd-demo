@@ -1,0 +1,20 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # This workflow runs when code is pushed to the main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # Runs on a Linux environment
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3  # Pulls the latest code
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./  # Deploys all files in the repository
